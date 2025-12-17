@@ -148,7 +148,7 @@ export default function App() {
         <div className="grid gap-6 lg:grid-cols-3">
           <PriceCard name="Starter" price="$299" note="New businesses" features={["Single page web design", "Mobile-first", "Basic SEO setup", "Contact/lead buttons"]} />
           <PriceCard name="Growth" price="$499" note="Best value" popular features={["Multi-page web design", "Menu options", "Photo Gallery", "Review section"]} />
-          <PriceCard name="Pro" price="$1299" note="AI + management" features={["Ongoing website management", "AI chatbot", "Unlimited Updates", "Content Creation/Photography"]} />
+          <PriceCard name="Pro" price="$1299" note="AI + management" features={["Ongoing website management", "AI chatbot", "Unlimited Updates", "Mobile App Creation", "Businiess Photography"]} />
         </div>
       </Section>
 
