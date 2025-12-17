@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { motion } from "framer-motion";
+import logo from "./assets/logo.png";
 import {
   Check,
   Sparkles,
@@ -20,8 +21,8 @@ const BRAND = {
   name: "Dev's Web Design",
   tagline: "Affordable, clean websites that help small businesses grow.",
   city: "Iowa City, IA",
-  email: "hello@yourdomain.com",
-  phone: "(555) 123-4567",
+  email: "devs.web.design@gmail.com",
+  phone: "712-314-0712",
   domain: "yourdomain.com",
 };
 
@@ -57,7 +58,7 @@ function Button({
   };
   const variants = {
     primary:
-      "bg-zinc-900 text-white shadow hover:bg-zinc-800 active:bg-zinc-950",
+      "bg-gradient-to-r from-orange-500 via-pink-500 to-rose-400 text-white shadow hover:opacity-90 active:opacity-80",
     secondary:
       "bg-white text-zinc-900 border border-zinc-200 shadow-sm hover:bg-zinc-50",
     ghost: "bg-transparent text-zinc-900 hover:bg-zinc-100",
@@ -269,7 +270,12 @@ export default function SmallBizWebDesignSalesSite() {
                 "text-white shadow"
               )}
             >
-              <img src="/logo.png" alt="Dev's Web Design logo" className="h-5 w-5 object-contain" />
+              {/* Logo */}
+              <img
+                src={logo}
+                alt="Dev's Web Design logo"
+                className="h-8 w-auto object-contain"
+              />
             </div>
             <div className="leading-tight">
               <div className="text-sm font-extrabold tracking-tight">
