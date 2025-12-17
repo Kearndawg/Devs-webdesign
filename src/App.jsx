@@ -14,7 +14,7 @@ import {
 
 const BRAND = {
   name: "Dev's Web Design",
-  tagline: "Affordable, clean websites that help small businesses grow.",
+  tagline: "Clean, affordable websites that help small businesses grow.",
   city: "Iowa City, IA",
   email: "devs.web.design@gmail.com",
   phone: "712-314-0712",
@@ -136,15 +136,15 @@ export default function App() {
         </div>
       </Section>
 
-      <Section id="work" eyebrow="Examples" title="Sample work" desc="Portfolio examples.">
+      <Section id="work" eyebrow="Examples" title="Examples of Our Past Projects">
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {["Landscaping Company", "Auto Repair Shop", "Local Restaurant"].map((t) => (
+          {["Fiddlehead Gardens", "Iowa Men's Club Soccer", "Local Restaurants"].map((t) => (
             <div key={t} className="rounded-3xl border bg-white p-6 shadow-sm"><LayoutTemplate className="h-6 w-6 mb-4 text-orange-500" /><h3 className="font-bold">{t}</h3><p className="text-sm text-zinc-600 mt-2">Conversion-focused layout.</p></div>
           ))}
         </div>
       </Section>
 
-      <Section id="pricing" eyebrow="Simple pricing" title="Packages" desc="Clear pricing.">
+      <Section id="pricing" title="Packages" desc="Clear pricing and no hidden fees.">
         <div className="grid gap-6 lg:grid-cols-3">
           <PriceCard name="Starter" price="$299" note="New businesses" features={["1 page", "Mobile-first", "Contact form", "Basic SEO"]} />
           <PriceCard name="Growth" price="$499" note="Best value" popular features={["Up to 5 pages", "Gallery", "Reviews"]} />
@@ -152,13 +152,13 @@ export default function App() {
         </div>
       </Section>
 
-      <Section id="contact" eyebrow="Get started" title="Let’s build something great" desc="Clear quote, no pressure.">
+      <Section id="contact" eyebrow="Get started" title="Let’s build something great" desc="Submit a quote and we'll respond same day!">
         <Button href={mailto} size="lg">Email me <Mail className="h-4 w-4" /></Button>
       </Section>
 
-      <Section id="faq" eyebrow="Questions" title="FAQs" desc="Common questions.">
+      <Section id="faq" title="FAQs" desc="Common questions.">
         <div className="grid gap-4 md:grid-cols-2">
-          {[{q:"How fast?",a:"7–10 days."},{q:"Edits later?",a:"Anytime."},{q:"Hosting?",a:"We can help."},{q:"Content help?",a:"Yes."}].map(i=> (
+          {[{q:"How long does it take to make my website?",a:"Depending on the complexity of your business, 5–10 days."},{q:"Am I able to make edits to my website later?",a:"Yes! We can make edits anytime! "},{q:"What if I don't have professional photos?",a:"We can help! The pro package includes a content creation option meaning we will take professional photos for you and your website."},{q:"Why are your prices lower than most agencies?",a:"We keep our prices low by running a lean operation with no agency overhead. You work directly with our web designer, which means faster communication, less confusion, and a high-quality website without paying for extras you don’t need."}].map(i=> (
             <div key={i.q} className="rounded-3xl border bg-white p-6"><h3 className="font-bold mb-2">{i.q}</h3><p className="text-sm text-zinc-600">{i.a}</p></div>
           ))}
         </div>
