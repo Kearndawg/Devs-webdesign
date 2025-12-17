@@ -14,7 +14,7 @@ import {
 
 const BRAND = {
   name: "Dev's Web Design",
-  tagline: "Clean, affordable websites that help small businesses grow.",
+  tagline: "Clean, affordable websites that help businesses grow.",
   city: "Iowa City, IA",
   email: "devs.web.design@gmail.com",
   phone: "712-314-0712",
