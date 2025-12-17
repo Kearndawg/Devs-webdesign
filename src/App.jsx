@@ -223,12 +223,18 @@ export default function App() {
           <FeatureCard
             icon={LayoutTemplate}
             title="Custom design"
-            desc="No cookie-cutter templates. Built for your business."
+            desc="No cookie-cutter templates. Specifically built for your business."
           />
           <FeatureCard
             icon={Wrench}
             title="Easy updates"
             desc="Need changes? I’ve got you covered."
+          <FeatureCard
+            icon={Sparkles}
+            title="AI chatbot"
+            desc="24/7 AI-powered chat to answer customer questions and capture leads automatically."
+           />
+
           />
         </div>
       </Section>
@@ -238,10 +244,10 @@ export default function App() {
         id="work"
         eyebrow="Examples"
         title="Sample work"
-        desc="Swap these with real projects as you build your portfolio."
+        desc="Examples of Past Projects We've Done"
       >
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {["Landscaping Company", "Auto Repair Shop", "Local Restaurant"].map((t) => (
+          {["Fiddlehead Gardens", "Iowa Men's Club Soccer", "Student Portfolio"].map((t) => (
             <div key={t} className="rounded-3xl border bg-white p-6 shadow-sm">
               <LayoutTemplate className="h-6 w-6 mb-4 text-orange-500" />
               <h3 className="font-bold">{t}</h3>
@@ -285,15 +291,56 @@ export default function App() {
 
       {/* CONTACT */}
       <Section
-        id="contact"
-        eyebrow="Get started"
-        title="Tell me what you need"
-        desc="I’ll reply with a clear quote and next steps."
+        <Section
+  id="contact"
+  eyebrow="Get started"
+  title="Let’s build something that actually helps your business grow"
+  desc="Tell me about your business and what you need — I’ll handle the design, tech, and setup so you don’t have to."
+>
+  <div className="flex flex-col items-start gap-4">
+    <Button href={mailto} size="lg">
+      Get started — email me <Mail className="h-4 w-4" />
+    </Button>
+    <p className="text-sm text-zinc-600">
+      No pressure, no jargon. Just a clear quote and next steps.
+    </p>
+  </div>
+</Section>
+<Section
+  id="faq"
+  eyebrow="Questions"
+  title="Frequently asked questions"
+  desc="If you don’t see your question here, just reach out — I’m happy to help."
+>
+  <div className="grid gap-4 md:grid-cols-2">
+    {[
+      {
+        q: "How fast can my site go live?",
+        a: "Most starter sites launch in 7–10 days once I have your content. Larger builds usually take 2–3 weeks.",
+      },
+      {
+        q: "Do you help with writing content?",
+        a: "Yes — I can polish what you have or help write clear, simple copy that converts.",
+      },
+      {
+        q: "What if I need changes later?",
+        a: "You can always request updates, or choose a plan that includes ongoing site management.",
+      },
+      {
+        q: "Is hosting included?",
+        a: "Hosting isn’t included by default, but I can help you set it up or manage it for you.",
+      },
+    ].map((item) => (
+      <div
+        key={item.q}
+        className="rounded-3xl border bg-white p-6 shadow-sm"
       >
-        <Button href={mailto} size="lg">
-          Email me <Mail className="h-4 w-4" />
-        </Button>
-      </Section>
+        <h3 className="font-bold mb-2">{item.q}</h3>
+        <p className="text-sm text-zinc-600">{item.a}</p>
+      </div>
+    ))}
+  </div>
+</Section>
 
       {/* CHAT PLACEHOLDER */}
       <div className="fixed bottom-6 right-6">
