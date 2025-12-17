@@ -1,6 +1,5 @@
 import React, { useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import logo from "./assets/logo.png";
 import {
   Check,
   Sparkles,
@@ -271,11 +270,7 @@ export default function SmallBizWebDesignSalesSite() {
               )}
             >
               {/* Logo */}
-              <img
-                src={logo}
-                alt="Dev's Web Design logo"
-                className="h-8 w-auto object-contain"
-              />
+              <img src="/logo.png" alt="Dev's Web Design logo" className="h-8 w-auto object-contain" />
             </div>
             <div className="leading-tight">
               <div className="text-sm font-extrabold tracking-tight">
