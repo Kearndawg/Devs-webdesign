@@ -1,7 +1,6 @@
 import React, { useMemo } from "react";
 import { motion } from "framer-motion";
 import {
-  Globe,
   ArrowRight,
   Phone,
   Mail,
@@ -36,9 +35,12 @@ export default function App() {
       {/* Header */}
       <header className="border-b bg-white px-6 py-4 flex justify-between items-center">
         <div className="flex items-center gap-3">
-          <div className="h-10 w-10 rounded-2xl bg-gradient-to-br from-orange-500 via-pink-500 to-rose-400 flex items-center justify-center text-white shadow">
-            <Globe className="h-5 w-5" />
-          </div>
+          {/* LOGO FROM PUBLIC FOLDER */}
+          <img
+            src="/logo.png"
+            alt="Dev's Web Design logo"
+            className="h-10 w-auto object-contain"
+          />
           <div>
             <div className="font-bold">{BRAND.name}</div>
             <div className="text-xs text-zinc-500">{BRAND.city}</div>
