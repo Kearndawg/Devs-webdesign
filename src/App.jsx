@@ -147,8 +147,8 @@ export default function App() {
       <Section id="pricing" title="Packages" desc="Clear pricing and no hidden fees.">
         <div className="grid gap-6 lg:grid-cols-3">
           <PriceCard name="Starter" price="$299" note="New businesses" features={["Single page web design", "Mobile-first", "Basic SEO setup", "Contact/lead buttons"]} />
-          <PriceCard name="Growth" price="$499" note="Best value" Starter features +={["Multi-page web design", "Menu options", "Photo Gallery", "Review section"]} />
-          <PriceCard name="Pro" price="$1299" note="AI + management" Growth features +={["Ongoing website managment", "AI chatbot", "Unlimited Updates", "Content Creation/Photography"]} />
+          <PriceCard name="Growth" price="$499" note="Best value" popular features={["Multi-page web design", "Menu options", "Photo Gallery", "Review section"]} />
+          <PriceCard name="Pro" price="$1299" note="AI + management" features={["Ongoing website management", "AI chatbot", "Unlimited Updates", "Content Creation/Photography"]} />
         </div>
       </Section>
 
