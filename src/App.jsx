@@ -6,6 +6,7 @@ import {
   ArrowRight,
   Phone,
   Mail,
+  Globe,
   ShieldCheck,
   Zap,
   Wrench,
@@ -57,40 +58,26 @@ function Button({ children, href, variant = "primary", size = "md" }) {
   );
 }
 
-function PriceCard({ name, price, note, features, popular }) {
+function Section({ id, eyebrow, title, desc, children }) {
   return (
-    <div
-      className={classNames(
-        "relative rounded-3xl border bg-white p-7 shadow-sm",
-        popular ? "border-orange-500" : "border-zinc-200"
-      )}
-    >
-      {popular && (
-        <div className="absolute -top-3 left-6 rounded-full bg-gradient-to-r from-orange-500 to-pink-500 px-3 py-1 text-xs font-semibold text-white shadow">
-          Most popular
+    <section id={id} className="scroll-mt-24">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-10 max-w-2xl">
+          {eyebrow && (
+            <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
+              {eyebrow}
+            </p>
+          )}
+          {title && (
+            <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-zinc-900 sm:text-3xl">
+              {title}
+            </h2>
+          )}
+          {desc && <p className="mt-3 text-base text-zinc-600">{desc}</p>}
         </div>
-      )}
-
-      <h3 className="text-lg font-extrabold">{name}</h3>
-      <p className="mt-1 text-sm text-zinc-600">{note}</p>
-
-      <div className="mt-4 text-4xl font-extrabold">{price}</div>
-
-      <ul className="mt-6 space-y-3">
-        {features.map((f) => (
-          <li key={f} className="flex items-start gap-2 text-sm">
-            <Check className="h-4 w-4 mt-0.5" />
-            {f}
-          </li>
-        ))}
-      </ul>
-
-      <div className="mt-7">
-        <Button href="#contact" size="lg" className="w-full">
-          Get started <ArrowRight className="h-4 w-4" />
-        </Button>
+        {children}
       </div>
-    </div>
+    </section>
   );
 }
 
@@ -100,61 +87,117 @@ export default function App() {
   return (
     <div className="min-h-screen bg-zinc-50 text-zinc-900">
       {/* Header */}
-      <header className="sticky top-0 z-50 border-b bg-white/80 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
-          <div className="flex items-center gap-3">
-            <img
-              src="/logo.png"
-              alt="Dev's Web Design logo"
-              className="h-9 w-auto"
-            />
-            <div>
-              <div className="text-sm font-extrabold">{BRAND.name}</div>
-              <div className="text-xs text-zinc-500">{BRAND.city}</div>
+      <header className="sticky top-0 z-50 border-b border-zinc-200 bg-white/80 backdrop-blur">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+          <a href="#" className="flex items-center gap-3">
+            <div
+              className={classNames(
+                "grid h-10 w-10 place-items-center rounded-2xl bg-gradient-to-br",
+                ACCENT,
+                "text-white shadow"
+              )}
+            >
+              <img src="/logo.png" alt="Dev's Web Design logo" className="h-6 w-auto" />
             </div>
-          </div>
+            <div className="leading-tight">
+              <div className="text-sm font-extrabold tracking-tight">{BRAND.name}</div>
+              <div className="text-[11px] text-zinc-500">{BRAND.city}</div>
+            </div>
+          </a>
 
-          <div className="flex gap-2">
+          <div className="flex items-center gap-2">
             <Button href={mailto} variant="secondary" size="sm">
               <Mail className="h-4 w-4" /> Email
             </Button>
-            <Button
-              href={`tel:${BRAND.phone.replace(/[^0-9]/g, "")}`}
-              variant="secondary"
-              size="sm"
-            >
+            <Button href={`tel:${BRAND.phone.replace(/[^0-9]/g, "")}`} variant="secondary" size="sm">
               <Phone className="h-4 w-4" /> Call
             </Button>
             <Button href="#contact" size="sm">
-              Get a quote
+              Get a quote <ArrowRight className="h-4 w-4" />
             </Button>
           </div>
         </div>
       </header>
 
       {/* Hero */}
-      <main className="mx-auto max-w-6xl px-6 pt-20">
-        <Pill>Small-business websites • Built to convert</Pill>
-
-        <motion.h1
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mt-6 text-4xl sm:text-5xl font-extrabold"
-        >
-          Sell more with a website that actually works.
-        </motion.h1>
-
-        <p className="mt-5 text-lg text-zinc-600">{BRAND.tagline}</p>
-
-        <div className="mt-8 flex gap-3">
-          <Button href="#pricing" size="lg">
-            See pricing
-          </Button>
-          <Button href="#contact" variant="secondary" size="lg">
-            Get a quote
-          </Button>
+      <main className="mx-auto max-w-6xl px-4 pt-16 sm:px-6 lg:px-8">
+        <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
+          <div>
+            <Pill>Small-business websites • Built to convert</Pill>
+            <motion.h1
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mt-4 text-4xl font-extrabold tracking-tight sm:text-5xl"
+            >
+              Sell more with a website that works — not just one that exists.
+            </motion.h1>
+            <p className="mt-5 text-lg text-zinc-600">{BRAND.tagline}</p>
+            <div className="mt-7 flex gap-3">
+              <Button href="#pricing" size="lg">
+                See pricing <ArrowRight className="h-4 w-4" />
+              </Button>
+              <Button href="#work" variant="secondary" size="lg">
+                View examples
+              </Button>
+            </div>
+          </div>
         </div>
       </main>
+
+      {/* Services */}
+      <div className="mt-24 py-16">
+        <Section
+          id="services"
+          eyebrow="What you get"
+          title="Done-for-you websites for real-world businesses"
+          desc="Restaurants, local shops, and service businesses — without tech confusion."
+        >
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <div className="rounded-3xl bg-white p-6 shadow-sm"><Zap /> Fast & mobile-first</div>
+            <div className="rounded-3xl bg-white p-6 shadow-sm"><ShieldCheck /> Trust builders</div>
+            <div className="rounded-3xl bg-white p-6 shadow-sm"><LayoutTemplate /> Custom design</div>
+            <div className="rounded-3xl bg-white p-6 shadow-sm"><Wrench /> Easy updates</div>
+          </div>
+        </Section>
+      </div>
+
+      {/* About */}
+      <section id="about" className="py-24 bg-white">
+        <div className="mx-auto max-w-4xl px-6">
+          <h2 className="text-3xl font-extrabold mb-6">About Me</h2>
+          <p className="text-lg text-zinc-600 leading-relaxed">
+            I work with small businesses that want a clean, professional website
+            without dealing with confusing tech, overpriced agencies, or slow
+            turnaround times. You tell me what you want, and I handle the design,
+            setup, and updates so your website actually helps your business grow.
+          </p>
+        </div>
+      </section>
+
+      {/* Portfolio */}
+      <section id="work" className="py-24 bg-zinc-50">
+        <div className="mx-auto max-w-6xl px-6">
+          <h2 className="text-3xl font-extrabold mb-10">Sample Work</h2>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {[{
+              title: "Local Landscaping Co.",
+              desc: "Quote-focused homepage with before/after gallery",
+            }, {
+              title: "Auto Repair Shop",
+              desc: "Click-to-call layout with services and reviews",
+            }, {
+              title: "Restaurant Website",
+              desc: "Menu, hours, location, and online contact",
+            }].map((item) => (
+              <div key={item.title} className="rounded-3xl border bg-white p-6 shadow-sm">
+                <LayoutTemplate className="h-6 w-6 mb-4 text-orange-500" />
+                <h3 className="font-bold mb-2">{item.title}</h3>
+                <p className="text-sm text-zinc-600">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Pricing */}
       <section id="pricing" className="py-24">
@@ -166,12 +209,7 @@ export default function App() {
               name="Starter"
               price="$299"
               note="Perfect for new businesses"
-              features={[
-                "1-page website",
-                "Mobile-first design",
-                "Contact form",
-                "Basic SEO setup",
-              ]}
+              features={["1-page website", "Mobile-first design", "Contact form", "Basic SEO setup"]}
             />
 
             <PriceCard
@@ -179,24 +217,14 @@ export default function App() {
               price="$499"
               note="Best for growing businesses"
               popular
-              features={[
-                "Up to 5 pages",
-                "Service pages",
-                "Photo gallery",
-                "Review section",
-              ]}
+              features={["Up to 5 pages", "Service pages", "Photo gallery", "Review section"]}
             />
 
             <PriceCard
               name="Pro"
               price="$1299"
               note="Hands-off management + AI"
-              features={[
-                "Up to 10 pages",
-                "AI chatbot",
-                "Unlimited updates",
-                "Ongoing site management",
-              ]}
+              features={["Up to 10 pages", "AI chatbot", "Unlimited updates", "Ongoing site management"]}
             />
           </div>
         </div>
@@ -218,6 +246,11 @@ export default function App() {
       {/* Chat */}
       <div className="fixed bottom-6 right-6">
         <div className="bg-gradient-to-r from-orange-500 via-pink-500 to-rose-400 text-white px-5 py-3 rounded-full shadow-lg font-semibold cursor-pointer">
+          Chat with us
+        </div>
+      </div>
+      <div className="fixed bottom-6 right-6">
+        <div className="bg-gradient-to-r from-orange-500 via-pink-500 to-rose-400 text-white px-5 py-3 rounded-full shadow-lg font-semibold">
           Chat with us
         </div>
       </div>
