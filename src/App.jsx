@@ -12,7 +12,6 @@ import {
   LayoutTemplate,
 } from "lucide-react";
 
-// ================= BRAND CONFIG =================
 const BRAND = {
   name: "Dev's Web Design",
   tagline: "Affordable, clean websites that help small businesses grow.",
@@ -23,12 +22,10 @@ const BRAND = {
 
 const ACCENT = "from-orange-500 via-pink-500 to-rose-400";
 
-// ================= UTILS =================
 function classNames(...c) {
   return c.filter(Boolean).join(" ");
 }
 
-// ================= UI COMPONENTS =================
 function Pill({ children }) {
   return (
     <span className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white/70 px-3 py-1 text-xs font-medium text-zinc-700 shadow-sm">
@@ -38,26 +35,16 @@ function Pill({ children }) {
   );
 }
 
-function Button({ children, href, variant = "primary", size = "md", className }) {
-  const base =
-    "inline-flex items-center justify-center gap-2 rounded-2xl font-semibold transition focus:outline-none";
-  const sizes = {
-    sm: "px-3.5 py-2 text-sm",
-    md: "px-4.5 py-2.5 text-sm",
-    lg: "px-5 py-3 text-base",
-  };
+function Button({ children, href, variant = "primary", size = "md" }) {
+  const base = "inline-flex items-center justify-center gap-2 rounded-2xl font-semibold transition";
+  const sizes = { sm: "px-3.5 py-2 text-sm", md: "px-4.5 py-2.5 text-sm", lg: "px-5 py-3 text-base" };
   const variants = {
-    primary:
-      "bg-gradient-to-r from-orange-500 via-pink-500 to-rose-400 text-white shadow hover:opacity-90",
-    secondary:
-      "bg-white text-zinc-900 border border-zinc-200 shadow-sm hover:bg-zinc-50",
+    primary: "bg-gradient-to-r from-orange-500 via-pink-500 to-rose-400 text-white shadow hover:opacity-90",
+    secondary: "bg-white text-zinc-900 border border-zinc-200 shadow-sm hover:bg-zinc-50",
   };
 
   return (
-    <a
-      href={href}
-      className={classNames(base, sizes[size], variants[variant], className)}
-    >
+    <a href={href} className={`${base} ${sizes[size]} ${variants[variant]}`}>
       {children}
     </a>
   );
@@ -68,16 +55,8 @@ function Section({ id, eyebrow, title, desc, children }) {
     <section id={id} className="scroll-mt-28 py-24">
       <div className="mx-auto max-w-6xl px-6">
         <div className="mb-12 max-w-2xl">
-          {eyebrow && (
-            <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
-              {eyebrow}
-            </p>
-          )}
-          {title && (
-            <h2 className="mt-2 text-3xl font-extrabold tracking-tight">
-              {title}
-            </h2>
-          )}
+          {eyebrow && <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500">{eyebrow}</p>}
+          {title && <h2 className="mt-2 text-3xl font-extrabold">{title}</h2>}
           {desc && <p className="mt-3 text-lg text-zinc-600">{desc}</p>}
         </div>
         {children}
@@ -88,14 +67,9 @@ function Section({ id, eyebrow, title, desc, children }) {
 
 function FeatureCard({ icon: Icon, title, desc }) {
   return (
-    <div className="rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
-      <div className="flex items-start gap-4">
-        <div
-          className={classNames(
-            "rounded-2xl p-3 text-white shadow bg-gradient-to-br",
-            ACCENT
-          )}
-        >
+    <div className="rounded-3xl border bg-white p-6 shadow-sm">
+      <div className="flex gap-4">
+        <div className={`rounded-2xl p-3 text-white bg-gradient-to-br ${ACCENT}`}>
           <Icon className="h-5 w-5" />
         </div>
         <div>
@@ -109,179 +83,88 @@ function FeatureCard({ icon: Icon, title, desc }) {
 
 function PriceCard({ name, price, note, features, popular }) {
   return (
-    <div
-      className={classNames(
-        "relative rounded-3xl border bg-white p-7 shadow-sm",
-        popular ? "border-orange-400" : "border-zinc-200"
-      )}
-    >
-      {popular && (
-        <div className="absolute -top-3 left-6 rounded-full bg-gradient-to-r from-orange-500 to-pink-500 px-3 py-1 text-xs font-semibold text-white shadow">
-          Most popular
-        </div>
-      )}
-
+    <div className={`relative rounded-3xl border bg-white p-7 shadow-sm ${popular ? "border-orange-400" : "border-zinc-200"}`}>
+      {popular && <div className="absolute -top-3 left-6 rounded-full bg-gradient-to-r from-orange-500 to-pink-500 px-3 py-1 text-xs font-semibold text-white">Most popular</div>}
       <h3 className="text-lg font-extrabold">{name}</h3>
       <p className="mt-1 text-sm text-zinc-600">{note}</p>
-
       <div className="mt-4 text-4xl font-extrabold">{price}</div>
-
       <ul className="mt-6 space-y-3">
         {features.map((f) => (
-          <li key={f} className="flex items-start gap-2 text-sm">
-            <Check className="h-4 w-4 mt-0.5" />
-            {f}
-          </li>
+          <li key={f} className="flex gap-2 text-sm"><Check className="h-4 w-4 mt-0.5" />{f}</li>
         ))}
       </ul>
-
-      <div className="mt-7">
-        <Button href="#contact" size="lg" className="w-full">
-          Get started <ArrowRight className="h-4 w-4" />
-        </Button>
-      </div>
+      <div className="mt-7"><Button href="#contact" size="lg">Get started <ArrowRight className="h-4 w-4" /></Button></div>
     </div>
   );
 }
 
-// ================= MAIN APP =================
 export default function App() {
   const mailto = useMemo(() => `mailto:${BRAND.email}`, []);
 
   return (
     <div className="min-h-screen bg-zinc-50 text-zinc-900">
-      {/* HEADER */}
-      <header className="sticky top-0 z-50 border-b border-zinc-200 bg-white/80 backdrop-blur">
+      <header className="sticky top-0 z-50 border-b bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <a href="#home" className="flex items-center gap-3">
-            <img src="/logo.png" alt="Dev's Web Design" className="h-9 w-auto" />
-            <div>
-              <div className="text-sm font-extrabold">{BRAND.name}</div>
-              <div className="text-xs text-zinc-500">{BRAND.city}</div>
-            </div>
+            <img src="/logo.png" className="h-9" />
+            <div><div className="text-sm font-extrabold">{BRAND.name}</div><div className="text-xs text-zinc-500">{BRAND.city}</div></div>
           </a>
-
-          <nav className="hidden md:flex items-center gap-6 text-sm font-semibold">
-            <a href="#services">Services</a>
-            <a href="#work">Work</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#contact">Get a quote</a>
+          <nav className="hidden md:flex gap-6 text-sm font-semibold">
+            <a href="#services">Services</a><a href="#work">Work</a><a href="#pricing">Pricing</a><a href="#contact">Get a quote</a>
           </nav>
-
-          <div className="flex items-center gap-2">
-            <Button href={mailto} variant="secondary" size="sm">
-              <Mail className="h-4 w-4" /> Email
-            </Button>
-            <Button
-              href={`tel:${BRAND.phone.replace(/[^0-9]/g, "")}`}
-              variant="secondary"
-              size="sm"
-            >
-              <Phone className="h-4 w-4" /> Call
-            </Button>
+          <div className="flex gap-2">
+            <Button href={mailto} variant="secondary" size="sm"><Mail className="h-4 w-4" /> Email</Button>
+            <Button href={`tel:${BRAND.phone.replace(/[^0-9]/g, "")}`} variant="secondary" size="sm"><Phone className="h-4 w-4" /> Call</Button>
           </div>
         </div>
       </header>
 
-      {/* HERO */}
       <main id="home" className="mx-auto max-w-6xl px-6 pt-24">
         <Pill>Small-business websites • Built to convert</Pill>
-
-        <motion.h1
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mt-6 text-4xl sm:text-5xl font-extrabold"
-        >
-          Sell more with a website that actually works.
-        </motion.h1>
-
+        <motion.h1 initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="mt-6 text-4xl sm:text-5xl font-extrabold">Sell more with a website that actually works.</motion.h1>
         <p className="mt-5 text-lg text-zinc-600 max-w-2xl">{BRAND.tagline}</p>
-
-        <div className="mt-8 flex gap-3">
-          <Button href="#pricing" size="lg">See pricing</Button>
-          <Button href="#contact" variant="secondary" size="lg">Get a quote</Button>
-        </div>
+        <div className="mt-8 flex gap-3"><Button href="#pricing" size="lg">See pricing</Button><Button href="#contact" variant="secondary" size="lg">Get a quote</Button></div>
       </main>
 
-      {/* SERVICES */}
-      <Section
-        id="services"
-        eyebrow="What you get"
-        title="Done-for-you websites for real businesses"
-        desc="Restaurants, local services, and small businesses that want results — not tech confusion."
-      >
+      <Section id="services" eyebrow="What you get" title="Done-for-you websites for real businesses" desc="Results without the tech confusion.">
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          <FeatureCard icon={Zap} title="Fast & mobile-first" desc="Lightning-fast, clean designs that look great on phones." />
-          <FeatureCard icon={ShieldCheck} title="Trust builders" desc="Reviews, credibility, and clear calls-to-action." />
-          <FeatureCard icon={LayoutTemplate} title="Custom design" desc="No cookie-cutter templates. Built for your business." />
-          <FeatureCard icon={Wrench} title="Easy updates" desc="Need changes? I’ve got you covered." />
-          <FeatureCard icon={Sparkles} title="AI chatbot" desc="24/7 AI-powered chat to answer questions and capture leads." />
+          <FeatureCard icon={Zap} title="Fast & mobile-first" desc="Optimized for speed and phones." />
+          <FeatureCard icon={ShieldCheck} title="Trust builders" desc="Reviews and credibility." />
+          <FeatureCard icon={LayoutTemplate} title="Custom design" desc="Built for your business." />
+          <FeatureCard icon={Wrench} title="Easy updates" desc="Change things anytime." />
+          <FeatureCard icon={Sparkles} title="AI chatbot" desc="24/7 lead capture." />
         </div>
       </Section>
 
-      {/* WORK */}
-      <Section id="work" eyebrow="Examples" title="Sample work" desc="Swap these with real projects as you build your portfolio.">
+      <Section id="work" eyebrow="Examples" title="Sample work" desc="Portfolio examples.">
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {["Landscaping Company", "Auto Repair Shop", "Local Restaurant"].map((t) => (
-            <div key={t} className="rounded-3xl border bg-white p-6 shadow-sm">
-              <LayoutTemplate className="h-6 w-6 mb-4 text-orange-500" />
-              <h3 className="font-bold">{t}</h3>
-              <p className="text-sm text-zinc-600 mt-2">Clean layout focused on calls, trust, and conversions.</p>
-            </div>
+            <div key={t} className="rounded-3xl border bg-white p-6 shadow-sm"><LayoutTemplate className="h-6 w-6 mb-4 text-orange-500" /><h3 className="font-bold">{t}</h3><p className="text-sm text-zinc-600 mt-2">Conversion-focused layout.</p></div>
           ))}
         </div>
       </Section>
 
-      {/* PRICING */}
-      <Section id="pricing" eyebrow="Simple pricing" title="Packages built for small businesses" desc="Clear pricing. No surprises.">
+      <Section id="pricing" eyebrow="Simple pricing" title="Packages" desc="Clear pricing.">
         <div className="grid gap-6 lg:grid-cols-3">
-          <PriceCard name="Starter" price="$299" note="Perfect for new businesses" features={["1-page website", "Mobile-first design", "Contact form", "Basic SEO setup"]} />
-          <PriceCard name="Growth" price="$499" note="Best value" popular features={["Up to 5 pages", "Service pages", "Gallery", "Reviews section"]} />
-          <PriceCard name="Pro" price="$1299" note="Hands-off management + AI" features={["Up to 10 pages", "AI chatbot", "Unlimited updates", "Ongoing management"]} />
+          <PriceCard name="Starter" price="$299" note="New businesses" features={["1 page", "Mobile-first", "Contact form", "Basic SEO"]} />
+          <PriceCard name="Growth" price="$499" note="Best value" popular features={["Up to 5 pages", "Gallery", "Reviews"]} />
+          <PriceCard name="Pro" price="$1299" note="AI + management" features={["Up to 10 pages", "AI chatbot", "Unlimited updates"]} />
         </div>
       </Section>
 
-      {/* CONTACT */}
-      <Section
-        id="contact"
-        eyebrow="Get started"
-        title="Let’s build something that actually helps your business grow"
-        desc="Tell me about your business and what you need — I’ll handle the design, tech, and setup so you don’t have to."
-      >
-        <div className="flex flex-col items-start gap-4">
-          <Button href={mailto} size="lg">Get started — email me <Mail className="h-4 w-4" /></Button>
-          <p className="text-sm text-zinc-600">No pressure, no jargon. Just a clear quote and next steps.</p>
-        </div>
+      <Section id="contact" eyebrow="Get started" title="Let’s build something great" desc="Clear quote, no pressure.">
+        <Button href={mailto} size="lg">Email me <Mail className="h-4 w-4" /></Button>
       </Section>
 
-      {/* FAQ */}
-      <Section id="faq" eyebrow="Questions" title="Frequently asked questions" desc="If you don’t see your question here, just reach out — I’m happy to help.">
+      <Section id="faq" eyebrow="Questions" title="FAQs" desc="Common questions.">
         <div className="grid gap-4 md:grid-cols-2">
-          {[
-            { q: "How fast can my site go live?", a: "Most starter sites launch in 7–10 days once I have your content. Larger builds usually take 2–3 weeks." },
-            { q: "Do you help with writing content?", a: "Yes — I can polish what you have or help write clear, simple copy that converts." },
-            { q: "What if I need changes later?", a: "You can always request updates, or choose a plan that includes ongoing management." },
-            { q: "Is hosting included?", a: "Hosting isn’t included by default, but I can help you set it up or manage it for you." },
-          ].map((item) => (
-            <div key={item.q} className="rounded-3xl border bg-white p-6 shadow-sm">
-              <h3 className="font-bold mb-2">{item.q}</h3>
-              <p className="text-sm text-zinc-600">{item.a}</p>
-            </div>
+          {[{q:"How fast?",a:"7–10 days."},{q:"Edits later?",a:"Anytime."},{q:"Hosting?",a:"We can help."},{q:"Content help?",a:"Yes."}].map(i=> (
+            <div key={i.q} className="rounded-3xl border bg-white p-6"><h3 className="font-bold mb-2">{i.q}</h3><p className="text-sm text-zinc-600">{i.a}</p></div>
           ))}
         </div>
       </Section>
 
-      {/* CHAT PLACEHOLDER */}
-      <div className="fixed bottom-6 right-6">
-        <div className="bg-gradient-to-r from-orange-500 via-pink-500 to-rose-400 text-white px-5 py-3 rounded-full shadow-lg font-semibold cursor-pointer">
-          Chat with us
-        </div>
-      </div>
-    </div>
-  );
-}
-
-      </div>
+      <div className="fixed bottom-6 right-6"><div className="bg-gradient-to-r from-orange-500 via-pink-500 to-rose-400 text-white px-5 py-3 rounded-full shadow-lg font-semibold">Chat with us</div></div>
     </div>
   );
 }
