@@ -25,7 +25,7 @@ const BRAND = {
   domain: "yourdomain.com",
 };
 
-const ACCENT = "from-zinc-900 via-zinc-900 to-zinc-800";
+const ACCENT = "from-orange-500 via-pink-500 to-rose-400";
 
 function classNames(...c) {
   return c.filter(Boolean).join(" ");
@@ -269,7 +269,7 @@ export default function SmallBizWebDesignSalesSite() {
                 "text-white shadow"
               )}
             >
-              <Globe className="h-5 w-5" />
+              <img src="/logo.png" alt="Dev's Web Design logo" className="h-5 w-5 object-contain" />
             </div>
             <div className="leading-tight">
               <div className="text-sm font-extrabold tracking-tight">
@@ -302,6 +302,14 @@ export default function SmallBizWebDesignSalesSite() {
               className="hidden sm:inline-flex"
             >
               <Mail className="h-4 w-4" /> Email
+            </Button>
+            <Button
+              href={`tel:${BRAND.phone.replace(/[^0-9+]/g, "")}`}
+              variant="secondary"
+              size="md"
+              className="hidden sm:inline-flex"
+            >
+              <Phone className="h-4 w-4" /> Call
             </Button>
             <Button href="#contact" size="md">
               Get a quote <ArrowRight className="h-4 w-4" />
@@ -817,6 +825,13 @@ export default function SmallBizWebDesignSalesSite() {
             </div>
           </div>
         </footer>
+
+        {/* AI Chatbot Placeholder */}
+        <div className="fixed bottom-6 right-6 z-50">
+          <div className="rounded-full bg-gradient-to-r from-orange-500 to-pink-500 p-4 shadow-lg text-white text-sm font-semibold cursor-pointer">
+            Chat with us
+          </div>
+        </div>
       </main>
     </div>
   );
